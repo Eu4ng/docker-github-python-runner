@@ -23,3 +23,9 @@
 ```bash
 docker build -t ghcr.io/eu4ng/github-python-runner:latest .
 ```
+
+## 푸시 명령어
+
+```bash
+docker push ghcr.io/eu4ng/github-python-runner:latest
+```
