@@ -8,10 +8,13 @@ RUN apt-get update && apt-get install -y git
 
 WORKDIR /usr/src/app
 
+COPY run.sh run.sh
+RUN chmod 755 run.sh
+
 ENV GITHUB_TOKEN=""
 ENV GITHUB_OWNER=""
 ENV GITHUB_REPOSITORY=""
 ENV GITHUB_BRANCH="master"
 ENV PYTHON_FILE_NAME="app"
 
-CMD if [ -z "$(ls)" ]; then git clone https://${GITHUB_TOKEN}@github.com/${GITHUB_OWNER}/${GITHUB_REPOSITORY} -b ${GITHUB_BRANCH} .; else git pull; fi; pip install -r requirements.txt; python ${PYTHON_FILE_NAME}.py;
+ENTRYPOINT [ "./run.sh" ]
