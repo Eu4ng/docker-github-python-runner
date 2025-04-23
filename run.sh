@@ -2,6 +2,8 @@
 
 # GitHub 저장소 Clone
 
+GITHUB_TOKEN="$(cat /run/secrets/github_token)"
+
 if [ ! -d "$GITHUB_REPOSITORY" ]; then
     git clone https://"$GITHUB_TOKEN"@github.com/"$GITHUB_OWNER"/"$GITHUB_REPOSITORY" -b "$GITHUB_BRANCH"
 fi

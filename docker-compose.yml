@@ -1,13 +1,18 @@
 version: '3'
 
 services:
-  github-python-runner:
-    image: ghcr.io/eu4ng/github-python-runner:latest
-    container_name: github-python-runner
-    environment:
-      GITHUB_TOKEN:
-      GITHUB_OWNER:
-      GITHUB_REPOSITORY:
-      GITHUB_BRANCH: master
-      PYTHON_FILE_NAME: app
-    restart: always
+    github-python-runner:
+        image: ghcr.io/eu4ng/github-python-runner:latest
+        container_name: github-python-runner
+        environment:
+            GITHUB_OWNER:
+            GITHUB_REPOSITORY:
+            GITHUB_BRANCH: master
+            PYTHON_FILE_NAME: app
+        secrets:
+            - github_token
+        restart: always
+
+secrets:
+    github_token:
+        file: github_token.txt

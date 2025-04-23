@@ -11,7 +11,6 @@ WORKDIR /usr/src/app
 COPY run.sh run.sh
 RUN chmod 755 run.sh
 
-ENV GITHUB_TOKEN=""
 ENV GITHUB_OWNER=""
 ENV GITHUB_REPOSITORY=""
 ENV GITHUB_BRANCH="master"
