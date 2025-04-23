@@ -2,13 +2,13 @@
 
 # GitHub 저장소 Clone
 
-if [ ! -d $GITHUB_REPOSITORY ]; then 
-    git clone https://$GITHUB_TOKEN@github.com/$GITHUB_OWNER/$GITHUB_REPOSITORY -b $GITHUB_BRANCH
+if [ ! -d "$GITHUB_REPOSITORY" ]; then
+    git clone https://"$GITHUB_TOKEN"@github.com/"$GITHUB_OWNER"/"$GITHUB_REPOSITORY" -b "$GITHUB_BRANCH"
 fi
 
 # GitHub 저장소 폴더로 이동
 
-cd $GITHUB_REPOSITORY
+cd "$GITHUB_REPOSITORY" || exit
 
 # GitHub 저장소 업데이트
 
@@ -20,4 +20,4 @@ pip install -r requirements.txt
 
 # Python 스크립트 실행
 
-python $PYTHON_FILE_NAME.py
+python "$PYTHON_FILE_NAME".py
