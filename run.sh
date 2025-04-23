@@ -1,25 +1,29 @@
 #!/bin/sh
 
-# GitHub 저장소 Clone
+update(){
+    # GitHub 저장소 업데이트
 
-GITHUB_TOKEN="$(cat /run/secrets/github_token)"
+    github_token="$(cat /run/secrets/github_token)"
 
-if [ ! -d "$GITHUB_REPOSITORY" ]; then
-    git clone https://"$GITHUB_TOKEN"@github.com/"$GITHUB_OWNER"/"$GITHUB_REPOSITORY" -b "$GITHUB_BRANCH"
-fi
+    if [ ! -d "$GITHUB_REPOSITORY" ]; then
+        git clone https://"$github_token"@github.com/"$GITHUB_OWNER"/"$GITHUB_REPOSITORY" -b "$GITHUB_BRANCH"
+    fi
 
-# GitHub 저장소 폴더로 이동
+    cd "$GITHUB_REPOSITORY" || exit
 
-cd "$GITHUB_REPOSITORY" || exit
+    git pull
+}
 
-# GitHub 저장소 업데이트
+run(){
+    # Python 패키지 업데이트
 
-git pull
+    pip install -r requirements.txt
 
-# Python 패키지 업데이트
+    # Python 스크립트 실행
 
-pip install -r requirements.txt
+    python "$PYTHON_FILE_NAME".py
+}
 
-# Python 스크립트 실행
+update
 
-python "$PYTHON_FILE_NAME".py
+run
